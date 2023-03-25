@@ -4,6 +4,26 @@ import "./App.html";
 
 Template.mainContainer.helpers({
   tasks() {
-    return TasksCollection.find({})
-  }
-})
+    return TasksCollection.find({});
+  },
+});
+
+Template.form.events({
+  "submit .task-form"(event) {
+    // prevent default browser form submit
+    event.preventDefault();
+
+    // get value from form element
+    const target = event.target;
+    const text = target.text.value;
+
+    // insert a task into the collection
+    TasksCollection.insert({
+      text,
+      createdAt: new Date(), // current time
+    });
+
+    // clear form
+    target.text.value = "";
+  },
+});
