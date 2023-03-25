@@ -4,7 +4,12 @@ import "./App.html";
 
 Template.mainContainer.helpers({
   tasks() {
-    return TasksCollection.find({});
+    return TasksCollection.find(
+      {},
+      {
+        sort: { createdAt: -1 },
+      }
+    );
   },
 });
 
