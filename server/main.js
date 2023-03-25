@@ -1,5 +1,5 @@
 import { Meteor } from "meteor/meteor";
-import { TasksCollection } from "../imports/ui/api/TasksCollection";
+import { TasksCollection } from "../imports/api/TasksCollection";
 
 const insertTask = (taskText) => TasksCollection.insert({ text: taskText });
 
@@ -12,6 +12,8 @@ Meteor.startup(() => {
       "third task",
       "fourth task",
       "fifth task",
+      "sixth task",
+      "seventh task",
     ].forEach(insertTask);
   }
 });
