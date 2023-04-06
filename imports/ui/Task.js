@@ -10,4 +10,8 @@ Template.task.events({
       $set: { isChecked: !this.isChecked },
     });
   },
+
+  "click delete"() {
+    TasksCollection.remove(this._id);
+  },
 });
