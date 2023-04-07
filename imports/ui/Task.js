@@ -11,7 +11,7 @@ Template.task.events({
     });
   },
 
-  "click delete"() {
+  "click .delete"() {
     TasksCollection.remove(this._id);
   },
 });
