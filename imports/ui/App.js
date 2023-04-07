@@ -12,21 +12,21 @@ Template.mainContainer.onCreated(function mainContainerOnCreated() {
 
 Template.mainContainer.helpers({
   tasks() {
-    return TasksCollection.find(
-      {},
-      {
-        sort: { createdAt: -1 },
-      }
-    );
+    const instance = Template.instance();
+    const hideCompleted = instance.state.get(HIDE_COMPLETED_STRING);
+    const hideCompletedFilter = { isChecked: { $ne: true } };
+    return TasksCollection.find(hideCompleted ? hideCompletedFilter : {}, {
+      sort: { createdAt: -1 },
+    }).fetch();
   },
 });
 
 Template.mainContainer.events({
-  'click #hide-completed-button'(event, instance) {
+  "click #hide-completed-button"(event, instance) {
     const currentHideCompleted = instance.state.get(HIDE_COMPLETED_STRING);
-    instance.state.set(HIDE_COMPLETED_STRING, !currentHideCompleted)
-  }
-})
+    instance.state.set(HIDE_COMPLETED_STRING, !currentHideCompleted);
+  },
+});
 
 Template.form.events({
   "submit .task-form"(event) {

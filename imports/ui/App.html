@@ -24,6 +24,12 @@
           {{/if}}
         </button>
       </div>
+
+      <ul class="tasks">
+        {{#each tasks}}
+          {{> task}}
+        {{/each}}
+      </ul>
     </div>
   </div>
 </template>
