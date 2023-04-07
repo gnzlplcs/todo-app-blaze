@@ -19,6 +19,10 @@ Template.mainContainer.helpers({
       sort: { createdAt: -1 },
     }).fetch();
   },
+
+  hideCompleted() {
+    return Template.instance().state.get(HIDE_COMPLETED_STRING);
+  },
 });
 
 Template.mainContainer.events({
