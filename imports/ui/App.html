@@ -13,23 +13,28 @@
     </header>
 
     <div class="main">
+      {{#if isUserLOgged}}
+
       {{> form}}
 
       <div class="filter">
         <button id="hide-completed-button">
           {{#if hideCompleted}}
-            Show All
+          Show All
           {{else}}
-            Hide Completed
+          Hide Completed
           {{/if}}
         </button>
       </div>
 
       <ul class="tasks">
         {{#each tasks}}
-          {{> task}}
+        {{> task}}
         {{/each}}
       </ul>
+      {{else}}
+      {{> login}}
+      {{/if}}
     </div>
   </div>
 </template>

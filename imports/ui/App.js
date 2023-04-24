@@ -31,6 +31,10 @@ Template.mainContainer.helpers({
     }).count();
     return incompleteTasksCount ? `(${incompleteTasksCount})` : "";
   },
+
+  isUserLogged() {
+    return isUserLogged();
+  },
 });
 
 Template.mainContainer.events({
