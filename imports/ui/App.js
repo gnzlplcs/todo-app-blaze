@@ -3,6 +3,7 @@ import { TasksCollection } from "../api/TasksCollection";
 import { ReactiveDict } from "meteor/reactive-dict";
 import "./App.html";
 import "./Task";
+import "./Login";
 
 const HIDE_COMPLETED_STRING = "hideCompleted";
 
