@@ -42,6 +42,10 @@ Template.mainContainer.helpers({
     ).fetch();
   },
 
+  getUser() {
+    return getUser();
+  },
+
   hideCompleted() {
     return Template.instance().state.get(HIDE_COMPLETED_STRING);
   },
@@ -68,6 +72,10 @@ Template.mainContainer.events({
     const currentHideCompleted = instance.state.get(HIDE_COMPLETED_STRING);
     instance.state.set(HIDE_COMPLETED_STRING, !currentHideCompleted);
   },
+
+  "click .user"() {
+    Meteor.logout();
+  }
 });
 
 Template.form.events({
