@@ -1,3 +1,4 @@
+import { Meteor } from "meteor/meteor";
 import { Template } from "meteor/templating";
 import { TasksCollection } from "../api/TasksCollection";
 import { ReactiveDict } from "meteor/reactive-dict";
@@ -6,6 +7,9 @@ import "./Task";
 import "./Login";
 
 const HIDE_COMPLETED_STRING = "hideCompleted";
+
+const getUser = () => Meteor.user();
+const isUserLogged = () => !!getUser();
 
 const getTasksFilter = () => {
   const user = getUser();
@@ -21,6 +25,17 @@ const getTasksFilter = () => {
 
 Template.mainContainer.onCreated(function mainContainerOnCreated() {
   this.state = new ReactiveDict();
+});
+
+Template.mainContainer.events({
+  "click #hide-completed-button"(event, instance) {
+    const currentHideCompleted = instance.state.get(HIDE_COMPLETED_STRING);
+    instance.state.set(HIDE_COMPLETED_STRING, !currentHideCompleted);
+  },
+
+  "click .user"() {
+    Meteor.logout();
+  },
 });
 
 Template.mainContainer.helpers({
@@ -42,10 +57,6 @@ Template.mainContainer.helpers({
     ).fetch();
   },
 
-  getUser() {
-    return getUser();
-  },
-
   hideCompleted() {
     return Template.instance().state.get(HIDE_COMPLETED_STRING);
   },
@@ -65,17 +76,10 @@ Template.mainContainer.helpers({
   isUserLogged() {
     return isUserLogged();
   },
-});
-
-Template.mainContainer.events({
-  "click #hide-completed-button"(event, instance) {
-    const currentHideCompleted = instance.state.get(HIDE_COMPLETED_STRING);
-    instance.state.set(HIDE_COMPLETED_STRING, !currentHideCompleted);
+  
+  getUser() {
+    return getUser();
   },
-
-  "click .user"() {
-    Meteor.logout();
-  }
 });
 
 Template.form.events({
