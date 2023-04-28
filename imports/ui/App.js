@@ -76,7 +76,7 @@ Template.mainContainer.helpers({
   isUserLogged() {
     return isUserLogged();
   },
-  
+
   getUser() {
     return getUser();
   },
@@ -88,7 +88,7 @@ Template.form.events({
     event.preventDefault();
 
     // get value from form element
-    const target = event.target;
+    const { target } = event;
     const text = target.text.value;
 
     // insert a task into the collection

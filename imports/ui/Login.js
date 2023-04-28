@@ -6,7 +6,7 @@ Template.login.events({
   "submit .login-form"(e) {
     e.preventDefault();
 
-    const target = e.target;
+    const { target } = e;
 
     const username = target.username.value;
     const password = target.password.value;
